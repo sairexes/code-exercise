@@ -43,7 +43,10 @@
           </div>
             <div class="panel-body">
               <div ng-repeat="item in value">
-                <div>{{ item.time }}</div>
+                <span ng-class="{ 'text-warning' : lates[ key ] !== '' && !$index }" >
+                  {{ item.time }}
+                  <em ng-if="lates[ key ] !== '' && !$index">- [ LATE ]</em>
+                </span>
               </div>
               <span class="text-danger" ng-if="value.length % 2">
                 Missing time punch
