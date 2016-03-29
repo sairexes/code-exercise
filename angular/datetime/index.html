@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head lang="en">
+    <meta charset="utf-8" />
+    <title>Date/Time</title>
+    <script data-require="moment.js@*" data-semver="2.10.2" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+
+  <body ng-controller="MyCtrl">
+    <div>
+      <div class="container">
+        <legend>Date/Time Attendance</legend>
+      </div>
+      <div class="col-xs-6">
+        <input class="form-control" ng-model="startDate" />
+      </div>
+      <div class="col-xs-6">
+        <input class="form-control" ng-model="endDate" />
+      </div>
+      <br><br>
+      <div class="col-xs-12">
+        <input class="form-control" ng-model="param" />
+      </div>
+      <br><br>
+      <div class="col-xs-6">
+        <button class="btn btn-default" ng-click="getData()">UPDATE DATA</button>
+      </div>
+      <div class="col-xs-6">
+        Total Hours: {{ totalHours }}
+      </div>
+      <br><br>
+      <div class="container">
+        <div class="panel panel-default" ng-class="{ 'panel-danger' : value.length % 2 }" ng-repeat="(key, value ) in attendance">
+          <!-- Default panel contents -->
+          <div class="panel-heading">
+            {{ key }} - <em>{{ byHours[ key ] }} hours</em>
+          </div>
+            <div class="panel-body">
+              <div ng-repeat="item in value">
+                <div>{{ item.time }}</div>
+              </div>
+              <span class="text-danger" ng-if="value.length % 2">
+                Missing time punch
+              </span>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+
+</html>
